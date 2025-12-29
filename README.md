@@ -19,7 +19,7 @@
 LogAnalyzer
 ├─ Models      # LogEntry 모델 (데이터 정의)
 ├─ Services    # LogParser 핵심 로직 (파싱 엔진)
-└─ Views       # WPF UI (사용자 화면 레이아웃)
+
 
 ## 📝 지원 로그 예시
 LogAnalyzer는 아래와 같은 다양한 패턴을 분석할 수 있습니다.
