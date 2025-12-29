@@ -1,0 +1,50 @@
+﻿<Window x:Class="LogAnalyzer.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Log Analyzer" Height="600" Width="900">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 파일 열기 + 필터/검색 패널 -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+
+            <Button Content="파일 열기" Width="100" Click="OpenFile_Click"/>
+
+            <Button Content="ALL" Width="60" Margin="10,0,0,0" Click="AllFilter_Click"/>
+            <Button Content="ERROR" Width="60" Margin="5,0,0,0" Click="ErrorFilter_Click"/>
+            <Button Content="WARN" Width="60" Margin="5,0,0,0" Click="WarnFilter_Click"/>
+            <Button Content="INFO" Width="60" Margin="5,0,0,0" Click="InfoFilter_Click"/>
+
+            <TextBox x:Name="SearchBox" Width="200" Height="25" Margin="10,0,5,0" />
+
+            <Button Content="검색" Width="60" Click="Search_Click"/>
+            <CheckBox x:Name="CaseCheckBox" Content="대소문자 구분" Margin="10,0,0,0"
+                      Checked="CaseCheckBox_Changed" Unchecked="CaseCheckBox_Changed"/>
+        </StackPanel>
+
+        <!-- 정렬 버튼 -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" Grid.Row="1">
+            <Button Content="시간순" Width="80" Click="SortTime_Click"/>
+            <Button Content="레벨순" Width="80" Margin="5,0,0,0" Click="SortLevel_Click"/>
+            <Button Content="메시지순" Width="100" Margin="5,0,0,0" Click="SortMessage_Click"/>
+        </StackPanel>
+
+        <!-- 로그 DataGrid -->
+        <DataGrid x:Name="LogGrid" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="150"/>
+                <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="100"/>
+                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- 통계 표시 -->
+        <TextBlock x:Name="StatsText" Grid.Row="3" Height="30" Margin="0,5,0,0"/>
+    </Grid>
+</Window>
